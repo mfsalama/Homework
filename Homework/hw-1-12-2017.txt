@@ -18,3 +18,11 @@ b)Relative Path Resolution:
 3. No: see previous explanation. Also, we did not specify -F to display / at the end of the directory names.
 4. Yes: ../backup refers to /Users/backup.
 
+c)Ls Reading Comprehension:
+
+1. ls pwd
+2. ls -r -F
+3. ls -r -F /Users/backup
+4. Either #2 or #3 above, but not #1.
+
+
