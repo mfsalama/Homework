@@ -6714,4 +6714,35 @@ Eulipotyphla Soricidae Crocidura Crocidura levicula 1.77
   637  grep -r "Gorilla" data
   638  history >> ~/Desktop/eeb-177/Homework/week-2-hw-eeb177.txt 
 
-6) QUESTION 6
+6) QUESTION 6: 1.11 in Allesina:
+	1)done
+	2)9,515 wc
+	3)done (cp in sandbox then mv to my_file.fasta)
+	4)16 (done by: grep -c isogroup00036 Marra2014_data.fasta)
+	5)done (tr -s '[:blank:] [:blank:]' ',' <Marra2014_data.fasta )
+	6)43 isogroups
+	7)numreads=353       ( 1 >contig01312  length=3311  numreads=353  gene=isogroup00039  status=it_thresh)
+7)QUESTION 7: done. Appended to HW
+
+8)QUESTION 8:  
+
+a)using grep:  command 3: grep -w "of" haiku.txt
+b)find pipeline reading comprehension:     ls and find can be made to do similar things given the right options, but under normal circumstances, 
+ls lists everything it can, while find searches for things with certain properties and shows them.
+As we said earlier, the command line’s power lies in combining tools. We’ve seen how to do that with pipes; 
+let’s look at another technique. As we just saw, find . -name '*.txt' gives us a list of all text files in or below the current directory. 
+How can we combine that with wc -l to count the lines in all those files? The simplest way is to put the find command inside is the one presented. 
+c)Matching and Subtracting:  2)find /data -name ose.dat | grep -v temp
+d)Tracking a Species: 
+grep -w $1 -r $2  
+|  
+$1.txt  
+
+cut -d : -f 2  
+>  
+|  
+cut -d , -f 1,3  
+e)little women: grep -w NAMES to find each name every time by itself (note the -w)
+f)Finding Files With Different Properties: $ find ./ -type f -mtime -1 -user ahmed
+
+
