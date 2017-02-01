@@ -1,0 +1,21 @@
+QUESTION 1: 
+
+a)The levels of individual 3 were measured 61 times
+cut -f 1 Gesquiere2011_data.csv | grep -c -w 3
+
+The levels of individual 27 were measured 5 times 
+cut -f 1 Gesquiere2011_data.csv | grep -c -w 27
+
+b)FILE is file name $ID is maleID. Save script as id_records.sh
+cut -f 1 $FILE | grep -c -w $ID
+
+c)using a for loop and previous script (id_records.sh)
+
+ID='tail -n +2 Gesquiere2011_data.csv | cut -f 1 |  sort -n | uniq'
+fir male_id in $ID
+
+	count='bash id_records.sh Gesquiere2011_data.csv $male_id'
+	echo "ID:" $male_id "counts:" $count
+done
+
+QUESTION 2:
