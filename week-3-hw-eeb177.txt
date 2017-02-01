@@ -19,16 +19,29 @@ fir male_id in $ID
 done
 
 QUESTION 2:
-a)ID='Saavendra_data.csv | uniq'
-fir$number_of_rows $ID | number_of_columns $ID
+a)
+echo 'file name is:'
+echo $1 
 
-	count='bash id_records.sh Saavedra_data.csv $number_of_rows'
-	count2='bash id_records.sh Saavedra_data.csv $number_of_columns'
-	echo "ID:" $number_of_rows "counts:" $count	
-	echo "ID:" $number_of_columns "counts:" $count2
-	
+echo 'number of rows:'
+cat $1 | wc -1
+
+echo 'number of columns:'
+$head -n 1 | tr -d | tr -d.\n' | wc -c
+
 
 b)
+FILES=*txt
+for ff in $FILES 
+do
+
+	rows= 'cat $1ff | wc -l'
+	columns= head $1ff -n 1 | tr -d | tr -d.\n' | wc -c
+	echo $1ff $row $column
+
 
 c)
-
+rows= 'cat $1ff | wc -l'
+	columns= head $1ff -n 1 | tr -d | tr -d.\n' | wc -c
+	echo $1ff $row $column
+-This will create a loop that will count for us the rows and columns for each of the files. 
