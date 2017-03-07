@@ -1,0 +1,235 @@
+---
+title: "r-week-8-hw-eeb177"
+output: md_document
+---
+
+# 1: Exploring Data Frames:
+
+# challenge # 1:
+
+```{r}
+df <- data.frame(id = c('a', 'b', 'c'),
+                 x = 1:3,
+                 y = c(TRUE, TRUE, FALSE),
+                 stringsAsFactors = FALSE)
+```
+
+```{r}
+df <- data.frame(first = c('Grace'),
+                 last = c('Hopper'),
+                 lucky_number = c(0),
+                 stringsAsFactors = FALSE)
+df <- rbind(df, list('Marie', 'Curie', 238) )
+df <- cbind(df, coffeetime = c(TRUE,TRUE))
+
+```
+
+# challenge # 2:
+
+```{r}
+destfile = ("~/Desktop/eeb-177/Homework/gapminder-FiveYearData.csv")
+gapminder <- read.csv(file = "~/Desktop/eeb-177/Homework/gapminder-FiveYearData.csv")
+```
+
+```{r}
+#source(file = "~/Desktop/eeb-177/Homework/gapminder-FiveYearData.R")
+
+```
+
+# challenge #3: 
+
+The object gapminder is a data frame with columns
+
+    country and continent are factors.
+    year is an integer vector.
+    pop, lifeExp, and gdpPercap are numeric vectors.
+
+# 2: Subsetting Data:
+
+# challenge #1: 
+
+```{r}
+x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
+names(x) <- c('a', 'b', 'c', 'd', 'e')
+print(x)
+```
+
+```{r}
+x[2:4]
+```
+
+```{r}
+x[-c(1,5)]
+```
+
+```{r}
+x[c("b", "c", "d")]
+```
+
+```{r}
+x[c(2,3,4)]
+```
+
+# challenge #2:
+
+```{r}
+x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
+names(x) <- c('a', 'b', 'c', 'd', 'e')
+print(x)
+```
+
+```{r}
+x[-which(names(x) == "g")]
+```
+
+A and C are correct.
+
+The which command returns the index of every TRUE value in its input. The names(x) == "g" command didn’t return any TRUE values. Because there were no TRUE values passed to the which command, it returned an empty vector. Negating this vector with the minus sign didn’t change its meaning. Because we used this empty vector to retrieve values from x, it produced an empty numeric vector. It was a named numeric empty vector because the vector type of x is “named numeric” since we assigned names to the values (try str(x) ).
+
+# challenge #3: 
+
+```{r}
+x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
+names(x) <- c('a', 'b', 'c', 'd', 'e')
+print(x)
+
+```
+
+```{r}
+x_subset <- x[x<7 & x>4]
+print(x_subset)
+```
+
+# challenge #4:
+
+```{r}
+m <- matrix(1:18, nrow=3, ncol=6)
+print(m)
+```
+
+D. m[2,c(4,5)]
+
+# challenge #5: 
+
+```{r}
+xlist <- list(a = "Software Carpentry", b = 1:10, data = head(iris))
+```
+
+```{r}
+xlist$b[2]
+```
+
+```{r}
+xlist[[2]][2]
+```
+
+```{r}
+xlist[["b"]][2]
+```
+
+# challenge # 6: 
+
+```{r}
+mod <- aov(pop ~ lifeExp, data=gapminder)
+```
+
+```{r}
+attributes(mod) ## `df.residual` is one of the names of `mod`
+```
+
+```{r}
+mod$df.residual
+```
+
+# challenge # 7:
+
+```{r}
+# gapminder[gapminder$year = 1957,]
+gapminder[gapminder$year == 1957,]
+```
+
+```{r}
+# gapminder[,-1:4]
+gapminder[,-c(1:4)]
+```
+
+```{r}
+# gapminder[gapminder$lifeExp > 80]
+gapminder[gapminder$lifeExp > 80,]
+
+```
+
+```{r}
+# gapminder[1, 4, 5]
+gapminder[1, c(4, 5)]
+
+```
+
+```{r}
+# gapminder[gapminder$year == 2002 | 2007,]
+ gapminder[gapminder$year == 2002 | gapminder$year == 2007,]
+ gapminder[gapminder$year %in% c(2002, 2007),]
+```
+
+# challenge # 8:
+
+```{r}
+gapminder_small <- gapminder[c(1:9, 19:23),]
+```
+
+# 3: Creating Publication-Quality Graphics: 
+
+# challenge #1: 
+
+```{r}
+library("ggplot2")
+ggplot(data = gapminder, aes(x = year, y = lifeExp)) + geom_point()
+
+```
+
+
+# challenge #2:
+
+```{r}
+ggplot(data = gapminder, aes(x = year, y = lifeExp, color=continent)) +
+  geom_point()
+
+```
+
+# challenge #3: 
+
+```{r}
+ggplot(data = gapminder, aes(x=year, y=lifeExp, by=country)) +
+ geom_point() + geom_line(aes(color=continent))
+```
+
+
+# challenge #4a:
+
+```{r}
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
+ geom_point(size=3, color="orange") + scale_x_log10() +
+ geom_smooth(method="lm", size=1.5)
+
+```
+
+# challenge # 4b:
+
+```{r}
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +
+geom_point(size=3, pch=17) + scale_x_log10() +
+geom_smooth(method="lm", size=1.5)
+
+```
+
+# challenge # 5:
+
+```{r}
+ggplot(data = gapminder, aes(x = gdpPercap, fill=continent)) +
+ geom_density(alpha=0.6) + facet_wrap( ~ year) + scale_x_log10()
+```
+
+
+
+
+
